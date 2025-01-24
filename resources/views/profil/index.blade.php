@@ -6,7 +6,6 @@
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
-                {{-- <h6 class="mb-4">Profil Pengguna</h6> --}}
                 <div class="row mb-3">
                     <div class="col-12 mb-3">
                         <img src="{{ asset('assets/RizqiHarfian_181011401021.jpg') }}" alt="Foto Profil" class="img-fluid" style="max-width: 15%; height: auto;">

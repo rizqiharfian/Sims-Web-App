@@ -11,9 +11,8 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $perPage = 5;
-        $users = User::paginate($perPage); // Paginate data untuk tampilan
+        $users = User::paginate($perPage);
 
-        // Hitung total halaman
         $totalPages = $users->lastPage();
         $currentPage = $users->currentPage();
 
@@ -23,12 +22,11 @@ class UsersController extends Controller
 
     public function create()
     {
-        return view('users.create'); // Menampilkan form tambah user
+        return view('users.create');
     }
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -36,7 +34,6 @@ class UsersController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        // Simpan user ke database
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -49,37 +46,34 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        $user = User::findOrFail($id); // Cari user berdasarkan ID
-        return view('users.edit', compact('user')); // Kirim data ke view
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
 {
-    $user = User::findOrFail($id); // Cari user berdasarkan ID
+    $user = User::findOrFail($id);
 
-    // Validasi input
     $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email,' . $id, // Menghindari duplikasi email
-        'role' => 'required|in:Admin,Pemilik,User', // Validasi hanya menerima nilai 'Admin' atau 'User'
+        'email' => 'required|email|unique:users,email,' . $id,
+        'role' => 'required|in:Admin,Pemilik,User',
     ]);
 
-    // Update data user
     $user->update([
         'name' => $request->name,
         'email' => $request->email,
         'role' => $request->role,
-        'password' => $request->password ? Hash::make($request->password) : $user->password, // Jika password kosong, tidak diubah
+        'password' => $request->password ? Hash::make($request->password) : $user->password,
     ]);
 
-    // Redirect kembali ke halaman users dengan pesan sukses
     return redirect()->route('users')->with('message', 'User berhasil diperbarui.');
 }
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id); // Cari user berdasarkan ID
-        $user->delete(); // Hapus data user
+        $user = User::findOrFail($id);
+        $user->delete();
         return redirect()->route('users')->with('message', 'User berhasil dihapus.');
     }
 }

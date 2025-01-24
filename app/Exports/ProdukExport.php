@@ -11,18 +11,12 @@ class ProdukExport implements FromCollection, WithHeadings
     protected $search;
     protected $kategori;
 
-    /**
-     * Konstruktor untuk menerima parameter filter
-     */
     public function __construct($search = null, $kategori = null)
     {
         $this->search = $search;
         $this->kategori = $kategori;
     }
 
-    /**
-     * Ambil data produk berdasarkan filter
-     */
     public function collection()
     {
         $query = Produk::query();
@@ -38,9 +32,6 @@ class ProdukExport implements FromCollection, WithHeadings
         return $query->select('nama_produk', 'kategori_produk', 'harga_beli', 'harga_jual', 'stok_produk')->get();
     }
 
-    /**
-     * Tambahkan header di file Excel
-     */
     public function headings(): array
     {
         return [

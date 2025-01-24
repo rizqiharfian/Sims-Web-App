@@ -8,12 +8,10 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Edit User</h6>
 
-                <!-- Form Edit User -->
                 <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                 
-                    <!-- Form Fields -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama</label>
                         <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}" placeholder="Masukkan nama" required>

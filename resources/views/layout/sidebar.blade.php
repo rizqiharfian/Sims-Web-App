@@ -24,10 +24,8 @@
                     <a href="element.html" class="dropdown-item">Other Elements</a>
                 </div>
             </div> --}}
-            {{-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Transaksi</a> --}}
             <a href="{{ route('produk') }}" class="nav-item nav-link"><i class="fa fa-file-archive me-2"></i>Produk</a>
             <a href="{{ route('profil') }}" class="nav-item nav-link"><i class="fa fa-car me-2"></i>Profil</a>
-            {{-- <a href="{{ route('login.keluar') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Logout</a> --}}
             <form action="{{ route('login.keluar') }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="nav-item nav-link" style="border: none; background: none;">

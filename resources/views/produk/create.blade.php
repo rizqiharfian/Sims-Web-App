@@ -18,7 +18,6 @@
                     </div>
                 @endif
 
-                <!-- Form Tambah Produk -->
                 <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 

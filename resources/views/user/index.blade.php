@@ -5,14 +5,12 @@
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Data Users</h6>
 
-                    <!-- Flash Message -->
                     @if (session()->has('message'))
                         <div class="alert alert-success">
                             {{ session('message') }}
                         </div>
                     @endif
 
-                    <!-- Tabel Data User -->
                     <table class="table">
                         <thead>
                             <tr>
@@ -43,12 +41,10 @@
                         </tbody>
                     </table>
 
-                    <!-- Pagination -->
                     <div class="mt-3">
                         {{ $users->links() }}
                     </div>
 
-                    <!-- Tombol Tambah -->
                     <a href="{{ route('user.create') }}" class="btn btn-primary mt-3">Tambah</a>
                 </div>
             </div>

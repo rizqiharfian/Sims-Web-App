@@ -8,7 +8,6 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Tambah User</h6>
 
-                <!-- Form Tambah User -->
                 <form action="{{ route('users.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">

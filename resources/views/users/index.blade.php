@@ -8,14 +8,12 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Data Users</h6>
 
-                <!-- Flash Message -->
                 @if (session()->has('message'))
                     <div class="alert alert-success">
                         {{ session('message') }}
                     </div>
                 @endif
 
-                <!-- Tabel Data -->
                 <div id="userTableContainer">
                     <table class="table">
                         <thead>
@@ -35,10 +33,8 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
                                 <td class="text-center">
-                                    <!-- Tombol Edit -->
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">Edit</a>
 
-                                    <!-- Tombol Hapus -->
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
@@ -51,23 +47,18 @@
                     </table>
 
                 </div>
-                <!-- Navigasi Pagination -->
                 <div id="paginationContainer" class="mt-3">
-                    <!-- Tombol Previous -->
                     <a href="{{ $users->previousPageUrl() }}" class="btn btn-primary btn-sm prev-page" {{ $users->onFirstPage() ? 'disabled' : '' }}>
                         Previous
                     </a>
 
-                    <!-- Informasi Halaman -->
                     <span>Page {{ $users->currentPage() }} of {{ $totalPages }}</span>
 
-                    <!-- Tombol Next -->
                     <a href="{{ $users->nextPageUrl() }}" class="btn btn-primary btn-sm next-page" {{ $users->hasMorePages() ? '' : 'disabled' }}>
                         Next
                     </a>
                 </div>
 
-                <!-- Tombol Tambah -->
                 <a href="{{ route('users.create') }}" class="btn btn-primary mt-3">Tambah</a>
             </div>
         </div>
@@ -77,7 +68,6 @@
 
 @section('scripts')
 <script>
-    // Handle pagination click event
     $(document).on('click', '.pagination a', function(e) {
         e.preventDefault();
         let url = $(this).attr('href');
@@ -89,7 +79,6 @@
             url: url,
             type: 'GET',
             success: function(data) {
-                // Replace the table and pagination container with new data
                 $('#userTableContainer').html($(data).find('#userTableContainer').html());
             },
             error: function(xhr) {
